@@ -1,37 +1,52 @@
 
-const animeList = document.getElementById('animeList');
-const loginModal = document.getElementById('loginModal');
+let page = 1;
+let loading = false;
+let query = "";
+
+const list = document.getElementById("animeList");
+const login = document.getElementById("login");
 
 function toggleLogin() {
-  loginModal.style.display = loginModal.style.display === 'flex' ? 'none' : 'flex';
+  login.style.display = login.style.display === "flex" ? "none" : "flex";
 }
 
-async function searchAnime() {
-  const q = document.getElementById('search').value;
-  if (!q) return;
-  const res = await fetch(`https://api.jikan.moe/v4/anime?q=${q}`);
+async function loadAnime() {
+  if (loading) return;
+  loading = true;
+
+  const url = query
+    ? `https://api.jikan.moe/v4/anime?q=${query}&page=${page}`
+    : `https://api.jikan.moe/v4/top/anime?page=${page}`;
+
+  const res = await fetch(url);
   const data = await res.json();
-  renderAnime(data.data);
-}
 
-async function loadGenre(id) {
-  const res = await fetch(`https://api.jikan.moe/v4/anime?genres=${id}`);
-  const data = await res.json();
-  renderAnime(data.data);
-}
-
-function renderAnime(list) {
-  animeList.innerHTML = "";
-  list.slice(0, 20).forEach(a => {
-    const card = document.createElement('div');
-    card.className = 'card';
+  data.data.forEach(a => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.onclick = () => location.href = `anime.html?id=${a.mal_id}`;
     card.innerHTML = `
       <img src="${a.images.jpg.image_url}">
       <h3>${a.title}</h3>
     `;
-    animeList.appendChild(card);
+    list.appendChild(card);
   });
+
+  page++;
+  loading = false;
 }
 
-// Load top anime by default
-loadGenre(1);
+function searchAnime() {
+  query = document.getElementById("searchInput").value;
+  list.innerHTML = "";
+  page = 1;
+  loadAnime();
+}
+
+window.addEventListener("scroll", () => {
+  if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 300) {
+    loadAnime();
+  }
+});
+
+loadAnime();

@@ -1,37 +1,30 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
   <title>AnimeVerse+</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>🌸 AnimeVerse+</h1>
-    <input type="text" id="search" placeholder="Search anime...">
-    <button onclick="searchAnime()">Search</button>
-    <button onclick="toggleLogin()">Login</button>
-  </header>
+<header>
+  <h1>🌸 AnimeVerse+</h1>
+  <input id="searchInput" placeholder="Search anime...">
+  <button onclick="searchAnime()">Search</button>
+  <button onclick="toggleLogin()">Login</button>
+</header>
 
-  <div id="loginModal" class="modal">
-    <div class="modal-content">
-      <h2>Login</h2>
-      <input placeholder="Username">
-      <input type="password" placeholder="Password">
-      <button onclick="toggleLogin()">Enter</button>
-    </div>
+<div id="login" class="modal">
+  <div class="modal-content">
+    <h2>Login</h2>
+    <input placeholder="Username">
+    <input type="password" placeholder="Password">
+    <button onclick="toggleLogin()">Enter</button>
   </div>
+</div>
 
-  <section class="genres">
-    <button onclick="loadGenre(1)">Action</button>
-    <button onclick="loadGenre(4)">Comedy</button>
-    <button onclick="loadGenre(10)">Fantasy</button>
-    <button onclick="loadGenre(22)">Romance</button>
-  </section>
+<section id="animeList" class="grid"></section>
 
-  <section id="animeList" class="anime-list"></section>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
