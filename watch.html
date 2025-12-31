@@ -2,19 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Watch Episode</title>
+  <title>Watch</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <header>
   <h1 class="logo" onclick="location.href='index.html'">🌸 AnimeVerse+</h1>
 </header>
 
-<h2>Episode Player</h2>
+<h2 id="title"></h2>
 
-<div class="player">
-  <p>▶ Video Player Placeholder</p>
-  <p>Add your legal video source here</p>
-</div>
+<select id="lang">
+  <option value="sub">Sub</option>
+  <option value="dub">Dub</option>
+</select>
+
+<video id="player" controls width="100%" style="max-width:900px;"></video>
+
+<script>
+const params = new URLSearchParams(location.search);
+const anime = params.get("anime");
+const ep = params.get("ep");
+
+const player = document.getElementById("player");
+const title = document.getElementById("title");
+const langSelect = document.getElementById("lang");
+
+title.textContent = `${anime} — Episode ${ep}`;
+
+function loadVideo() {
+  const lang = langSelect.value;
+  player.src = `videos/${anime}/season1/ep${ep}-${lang}.mp4`;
+}
+
+langSelect.addEventListener("change", loadVideo);
+loadVideo();
+</script>
+
 </body>
 </html>
