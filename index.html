@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>AnimeVerse+</title>
@@ -8,22 +8,13 @@
 </head>
 <body>
 <header>
-  <h1>🌸 AnimeVerse+</h1>
-  <input id="searchInput" placeholder="Search anime...">
+  <h1 class="logo" onclick="location.href='index.html'">🌸 AnimeVerse+</h1>
+  <input id="search" placeholder="Search anime...">
   <button onclick="searchAnime()">Search</button>
-  <button onclick="toggleLogin()">Login</button>
+  <a href="login.html"><button>Sign In</button></a>
 </header>
 
-<div id="login" class="modal">
-  <div class="modal-content">
-    <h2>Login</h2>
-    <input placeholder="Username">
-    <input type="password" placeholder="Password">
-    <button onclick="toggleLogin()">Enter</button>
-  </div>
-</div>
-
-<section id="animeList" class="grid"></section>
+<section id="list" class="grid"></section>
 
 <script src="script.js"></script>
 </body>
