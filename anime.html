@@ -1,14 +1,26 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Anime Details</title>
+  <title>Anime</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<a class="back" href="index.html">⬅ Back</a>
-<div id="animeDetails"></div>
+<header>
+  <h1 class="logo" onclick="location.href='index.html'">🌸 AnimeVerse+</h1>
+</header>
+
+<div id="details"></div>
+
+<div class="lang">
+  <button onclick="setLang('sub')">Sub</button>
+  <button onclick="setLang('dub')">Dub</button>
+</div>
+
+<h2>Episodes</h2>
+<ul id="episodes"></ul>
+
 <script src="anime.js"></script>
 </body>
 </html>
